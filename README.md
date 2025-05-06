@@ -6,6 +6,16 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 
 ---
 
+## 📂 R Review  
+**Instructor**: Sarah
+
+Session:
+- **R Fundamentals & Review** (Monday, May 12 – 2:30 PM)
+
+A refresher on R basics, data manipulation, and plotting for participants of varied programming backgrounds.
+
+---
+
 ## 📂 Text Analysis  
 **Instructor**: Kristen S.
 
@@ -35,16 +45,6 @@ Includes materials from:
 - **Shiny App Development** (Thursday, May 15 – 1:30 PM)
 
 Focuses on effective visual communication and building interactive data apps with R and Shiny.
-
----
-
-## 📂 R Review  
-**Instructor**: Sarah
-
-Session:
-- **R Fundamentals & Review** (Monday, May 12 – 2:30 PM)
-
-A refresher on R basics, data manipulation, and plotting for participants of varied programming backgrounds.
 
 ---
 
