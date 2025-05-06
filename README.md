@@ -10,6 +10,8 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 **Instructor**: Sarah
 
 Session:
+
+Includes materials from:
 - **R Fundamentals & Review** (Monday, May 12 – 2:30 PM)
 
 ---
@@ -17,7 +19,7 @@ Session:
 ## 📂 Text Analysis  
 **Instructor**: Kristen S.
 
-This folder includes materials from two sessions:
+Includes materials from:
 - **Sentiment Analysis** (Tuesday, May 13 – 10:30 AM)  
 - **Topic Modeling** (Tuesday, May 13 – 2:00 PM)  
 
@@ -26,7 +28,7 @@ This folder includes materials from two sessions:
 ## 📂 Network Analysis  
 **Instructor**: Scott
 
-This folder includes resources from both the lecture and hands-on session:
+Includes materials from:
 - **Network Analysis** (Wednesday, May 14 – 10:30 AM and 2:00 PM)
 
 ---
@@ -43,7 +45,7 @@ Includes materials from:
 ## 📂 Working with Real-Life Data  
 **Instructors**: Corina
 
-This folder includes materials from sessions that center on real-world messiness in data:
+Includes materials from:
 - **Planning with/for Errors** (Friday, May 16 – 10:00 AM and 1:00 PM) 
 
 ---
