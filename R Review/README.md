@@ -4,8 +4,10 @@ For this project, make sure you have the following R packages installed:
 
 ### 📦 **Required Libraries**
 
-library(tidyverse) 
-library(here) 
+library(tidyverse)
+
+library(here)
+
 library(ggplot2)  
 
 And you can learn more about these packages here
