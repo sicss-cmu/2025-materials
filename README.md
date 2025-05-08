@@ -9,8 +9,6 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 ## 📂 R Review  
 **Instructor**: Sarah
 
-Session:
-
 Includes materials from:
 - **R Fundamentals & Review** (Monday, May 12 – 2:30 PM)
 
