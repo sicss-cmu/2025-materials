@@ -12,9 +12,18 @@ For this project, make sure you have the following R packages installed:
 
 ### 📦 **Required Libraries**
 
-library(tidyverse) [learn more](https://www.tidyverse.org/packages/)  
-library(RColorBrewer)  [learn more](https://www.datanovia.com/en/blog/the-a-z-of-rcolorbrewer-palette/)  
-library(wesanderson)  [learn more](https://github.com/karthik/wesanderson)  
-library(shiny)  [learn more](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/)  
-library(shinydashboard)  [learn more](https://rstudio.github.io/shinydashboard/get_started.html)  
-library(shinythemes)  [learn more](https://rstudio.github.io/shinythemes/)  
+library(tidyverse) 
+library(RColorBrewer)   
+library(wesanderson)  
+library(shiny)  
+library(shinydashboard)  
+library(shinythemes)  
+
+And you can learn more about these packages here
+
+- [tidyverse](https://www.tidyverse.org/packages/)
+- [RColorBrewer](https://www.datanovia.com/en/blog/the-a-z-of-rcolorbrewer-palette/)  
+- [wesanderson](https://github.com/karthik/wesanderson)  
+- [shiny](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/)  
+- [shinydashboard](https://rstudio.github.io/shinydashboard/get_started.html)  
+- [shinythemes](https://rstudio.github.io/shinythemes/)  
