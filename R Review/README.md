@@ -1,4 +1,4 @@
-# IMDB movie dialogue dataset
+# R Review
 
 For this project, make sure you have the following R packages installed:
 
