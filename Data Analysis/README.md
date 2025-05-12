@@ -12,7 +12,8 @@ For this project, make sure you have the following R packages installed:
 
 ### 📦 **Required Libraries**
 
-library(tidyverse) 
+library(tidyverse)
+
 library(RColorBrewer)   
 library(wesanderson)  
 library(shiny)  
