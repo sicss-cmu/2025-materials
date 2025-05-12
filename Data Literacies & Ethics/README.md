@@ -6,3 +6,5 @@ Suggested Reading(s):
 Examples of community review board:
 - [SAFELab](https://www.asc.upenn.edu/research/centers/safe-lab/about)
 - [Bronx Community Research Review Board](https://bxcrrb.org/)
+
+[Workshop Sildes](Data Literacies & Ethics/SICSS 2025 - Data literatcies and ethics.pdf)
