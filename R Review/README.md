@@ -1,3 +1,7 @@
+Suggested reading(s):
+- [Sample analysis of IMDB dataset](https://pudding.cool/2017/03/film-dialogue/)
+
+
 # R Review
 
 The dataset we're going to use is **film_genre.csv**
