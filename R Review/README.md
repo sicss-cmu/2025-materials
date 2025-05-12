@@ -1,5 +1,7 @@
 # R Review
 
+The dataset we're going to use is film_genre.csv
+
 For this project, make sure you have the following R packages installed:
 
 ### 📦 **Required Libraries**
