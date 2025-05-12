@@ -67,4 +67,18 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 
 ---
 
+## 📂 Speaker series
+
+- **TBD** by Jennifer Koehrsen - Institutional Review Board at CMU  (Monday, May 12, 13:00 – 14:00) 
+- **TBD** by Nynke Niezink - Department of Statistics and Data Science at CMU (Tuesday, May 13, 12:30 – 13:30) 
+- **TBD** by Lynnette Ng - School of Computer Science at CMU (Wednesday, May 14, 12:30 – 13:30) 
+- **TBD** by M Williams - Heinz College at CMU (Thursday, May 15, 12:30 – 13:30) 
+- **TBD** by Hirokazu Shirado - School of Computer Science at CMU (Friday, May 15, 14:00 – 16:00) 
+- **TBD** by Olivia Wells - Center for Shared Prosperity & Harry Hawkins - CREATE Lab (Monday, May 19, 13:00 – 14:00)
+- **TBD** by Vernelle Noel - Department of Architecture at CMU (Tuesday, May 20, 10:00 – 11:00) 
+- **TBD** by Eleanor Mattern - University of Pittsburgh (Wednesday, May 21, 10:00 – 11:00) 
+- **TBD** by Patrick Park - Software and Societal Systems Department (S3D) at CMU (Thursday, May 22, 10:00 – 11:00) 
+
+---
+
 Please check each folder for R scripts, datasets, and further reading materials.
