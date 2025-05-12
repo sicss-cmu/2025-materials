@@ -1,0 +1,408 @@
+---
+title: "Text Analysis Part 1"
+output: html_notebook
+---
+
+
+# SETUP AND PACKAGES
+```{r}
+# Install needed packages if not already installed
+packages <- c("dplyr", "tidytext", "SnowballC", "tidyr", "ggplot2", "stringr")
+installed <- packages %in% installed.packages()
+if (any(!installed)) install.packages(packages[!installed])
+
+# Load all packages
+lapply(packages, library, character.only = TRUE)
+```
+
+# Preprocessing preliminaries
+
+String we want to clean up
+```{r}
+duke_web_scrape <- "Duke Experts: A Trusted Source for Policy Makers\n\n\t\t\t\t\t\t\t"
+```
+
+Using gsub:
+```{r}
+gsub("\t", "", duke_web_scrape)
+```
+
+Pass two arguments at one time: 
+```{r}
+gsub("\t|\n", "", duke_web_scrape)
+```
+
+## GREP
+Store a string to demonstrate how to use GREP
+```{r}
+grepl("Experts", duke_web_scrape)
+```
+Try this:
+```{r}
+some_text <- c("apple", "banana", "grape", "apricot")
+grepl("ap", some_text)
+```
+
+Another example...
+```{r}
+some_text<-c("Friends","don't","let","friends","make","wordclouds")
+some_text[grep("^[F]", some_text)]
+```
+
+Special characters
+```{r}
+text_chunk<-c("[R is FUN!]")
+gsub("[","", text_chunk)
+```
+
+```{r}
+text_chunk<-c("[R is FUN!]")
+gsub('\\[|\\]',"", text_chunk)
+```
+
+# Tokenization
+
+**Tokenization** is the process of breaking text into smaller pieces called **tokens**. 
+
+Let's store some text and tokenize:
+```{r}
+sampleText <- "R is great for data analysis. It's also free!"
+```
+
+```{r}
+data_frame(line = 1, text = sampleText) %>%
+  unnest_tokens(word, text)
+  #unnest_tokens(character, text, token = "characters")
+  #unnest_tokens(sentence, text, token = "sentences")
+  #unnest_tokens(bigram, text, token = "ngrams", n = 2)
+  #unnest_tokens(trigram, text, token = "ngrams", n = 3)
+```
+
+
+### Exercise: Tokenization
+Tokenize the sentence: "Learning R is fun and empowering!" into bigrams and trigrams. How does the meaning or context change based on how your unit of analysis?
+
+```{r}
+# Write your code here!
+
+
+```
+
+
+## Tidy-text and pre-processing
+
+A **corpus** is a collection of texts. This could be anything from news articles to tweets, speeches, or full-length books. It's a way of organizing multiple documents together so we can analyze them as a group. 
+
+### Load data
+
+```{r}
+original_data <- read.csv("Corona_NLP_train.csv") %>%
+  select(created_at = TweetAt, text = OriginalTweet) 
+  
+head(original_data)
+```
+
+### Text pre-processing
+
+Tokenize!
+```{r}
+# Write your code here!
+
+
+```
+
+### Counting 
+```{r}
+tidy_covid %>%
+  count(word) %>%
+    arrange(desc(n))
+```
+
+
+### Stopword Removal
+
+```{r}
+data("stop_words")
+
+tidy_covid <- tidy_covid %>%
+  anti_join(stop_words)
+
+head(tidy_covid)
+```
+
+And now we can repeat the count of top words above:
+
+```{r}
+tidy_covid %>%
+  count(word) %>%
+    arrange(desc(n))
+```
+
+### Remove custom noise words (e.g., links and Twitter junk)
+
+```{r}
+tidy_covid <- tidy_covid %>%
+  filter(!word %in% c("https", "rt", "t.co", "amp"))
+```
+
+Recount:
+
+```{r}
+tidy_covid %>%
+  count(word) %>%
+    arrange(desc(n))
+```
+
+
+### Punctuation, whitespace, and numbers
+
+```{r}
+tidy_covid$word <- gsub("[[:punct:]]", "", tidy_covid$word)
+tidy_covid$word <- gsub("\\d+", "", tidy_covid$word)
+tidy_covid <- tidy_covid %>% filter(word != "")
+```
+
+Recount:
+```{r}
+tidy_covid %>%
+  count(word) %>%
+    arrange(desc(n))
+```
+
+### Exercise:
+
+Exercise: Clean the following vector: c("Running!", "n95", "COVID-19", "great!!!", "1234")
+
+```{r}
+# Write your code here!
+
+```
+
+
+
+### Stemming
+
+
+```{r}
+tidy_covid <- tidy_covid %>%
+  mutate(word = wordStem(word, language = "en"))
+
+```
+
+
+
+## Word Frequency Analysis
+
+```{r}
+top_words <- tidy_covid %>%
+  count(word) %>%
+  arrange(desc(n))
+```
+
+
+Now let’s make a graph of the top 20 words
+
+
+```{r}
+top_words %>%
+  slice(1:20) %>%
+    ggplot(aes(x=reorder(word, -n), y=n, fill=word))+
+      geom_bar(stat="identity")+
+        theme_minimal()+
+        theme(axis.text.x = 
+            element_text(angle = 60, hjust = 1, size=13))+
+        theme(plot.title = 
+            element_text(hjust = 0.5, size=18))+
+          ylab("Frequency")+
+          xlab("")+
+          ggtitle("Most Frequent Words in Tweets")+
+          guides(fill=FALSE)
+```
+
+
+### TF-IDF
+
+```{r}
+tidy_covid_tfidf <- tidy_covid %>%
+  count(created_at, word) %>%
+  bind_tf_idf(word, created_at, n)
+```
+
+
+Now let’s see what the most unusual words are (highest TF-IDF score)
+```{r}
+top_tfidf <- tidy_covid_tfidf %>%
+  arrange(desc(tf_idf))
+
+top_tfidf$word[1:10]
+```
+
+Least distinctive word
+
+```{r}
+top_tfidf <- tidy_covid_tfidf %>%
+  arrange(tf_idf)
+
+# View the top tf-idf word
+top_tfidf$word[1]
+```
+
+Show top N most usual/unusual words with their TF-IDF score
+
+```{r}
+top_tfidf <- tidy_covid_tfidf %>%
+  #arrange(desc(tf_idf)) %>%
+  arrange(tf_idf) %>%
+  select(word, tf_idf)
+
+# View the top 10 words and their scores
+head(top_tfidf, 10)
+```
+
+### Exercise: Compare top TF-IDF terms by date
+
+```{r}
+data <- tibble(date = c("2020-01-01", "2020-01-01", "2020-01-02", "2020-01-02"),
+               word = c("mask", "covid", "vaccine", "covid"))
+data %>% count(date, word) %>%
+  bind_tf_idf(word, date, n) %>%
+  arrange(desc(tf_idf))
+```
+
+
+# Sentiment Analysis
+Let’s use one of the built-in sentiment dictionaries from tidytext. We'll apply the Bing sentiment lexicon to tidy_covid.
+
+```{r}
+head(get_sentiments("bing"))
+```
+
+
+Let’s apply the bing sentiment dictionary to our database of tweets
+
+```{r}
+covid_sentiment <- tidy_covid %>%
+  inner_join(get_sentiments("bing")) %>%
+    count(created_at, sentiment) 
+
+head(covid_sentiment)
+```
+
+
+```{r}
+tidy_covid$date <- as.Date(tidy_covid$created_at, format = "%m/%d/%Y")
+```
+
+
+Now let’s aggregate negative sentiment by day
+```{r}
+covid_sentiment_plot <-
+  tidy_covid %>%
+    inner_join(get_sentiments("bing")) %>% 
+      filter(sentiment=="negative") %>%
+          count(date, sentiment)
+```
+
+
+
+```{r}
+ggplot(covid_sentiment_plot, aes(x=date, y=n))+
+  geom_line(color="red", size=.5)+
+    theme_minimal()+
+    theme(axis.text.x = 
+            element_text(angle = 60, hjust = 1, size=13))+
+    theme(plot.title = 
+            element_text(hjust = 0.5, size=18))+
+      ylab("Number of Negative Words")+
+      xlab("")+
+      ggtitle("Negative Sentiment in Tweets")+
+      theme(aspect.ratio=1/4)
+```
+**Exercise**: Find net sentiment per day from a small dataframe
+
+```{r}
+sample_data <- tibble(date = rep(c("2020-01-01", "2020-01-02"), each = 3),
+                      word = c("love", "hate", "great", "bad", "good", "terrible"))
+
+sample_data %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(date, sentiment) %>%
+  pivot_wider(names_from = sentiment, values_from = n, values_fill = 0) %>%
+  mutate(net_sentiment = positive - negative)
+```
+
+
+# Dictionary-Based Quantitative Text Analysis
+
+Creating Your Own Dictionary
+
+Suppose we want to examine COVID-related tweets for economic concerns. Let’s define a simple dictionary:
+
+```{r}
+economic_dictionary <- c("economy", "unemployment", "trade", "tariffs", "shopping")
+```
+
+
+
+Now use stringr::str_detect() to filter tweets that mention any of these terms:
+```{r}
+economic_tweets <- original_data %>%
+  filter(str_detect(text, paste(economic_dictionary, collapse = "|")))
+
+head(economic_tweets)
+```
+
+
+```{r}
+# Filter original tweets to only those that match your economic dictionary
+economic_tweets <- original_data %>%
+  filter(str_detect(text, paste(economic_dictionary, collapse = "|")))
+
+# Then tokenize only these tweets
+tidy_economic <- economic_tweets %>%
+  unnest_tokens(word, text)
+
+# Now join to Bing and analyze sentiment
+economic_sentiment <- tidy_economic %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(created_at, sentiment)
+
+# Optionally, plot only negative sentiment
+economic_sentiment_plot <- economic_sentiment %>%
+  filter(sentiment == "negative") %>%
+  mutate(date = as.Date(created_at, format = "%m/%d/%Y"))  # fix format if needed
+
+ggplot(economic_sentiment_plot, aes(x = date, y = n)) +
+  geom_line(color = "red", linewidth = 0.5) +
+  theme_minimal() +
+  labs(x = "", y = "Negative Words", title = "Negative Sentiment in Economic Tweets") +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+
+
+**Exercise**:
+
+- Create their own dictionary (e.g., for healthcare, misinformation, etc.)
+- Filter or visualize sentiment over time
+- Compare peaks in negative/positive sentiment
+
+Example starter:
+
+```{r}
+health_terms <- c("hospital", "doctor", "vaccine", "mask")
+health_mentions <- original_data %>%
+  filter(str_detect(text, paste(health_terms, collapse = "|")))
+```
+
+
+```{r}
+health_terms <- c("hospital", "doctor", "mask", "vaccine")
+health_tweets <- original_data %>%
+  filter(str_detect(text, paste(health_terms, collapse = "|")))
+
+health_sentiment <- health_tweets %>%
+  unnest_tokens(word, text) %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(word, sentiment, sort = TRUE)
+```
