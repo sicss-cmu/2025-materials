@@ -6,7 +6,7 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 
 ---
 
-## 📂 Data Literacies & Ethics
+## 📂 [Data Literacies & Ethics](https://github.com/sicss-cmu/2025-materials/tree/main/Data%20Literacies%20%26%20Ethics)
 **Instructor**: Di Yoong & Emily Bongiovanni
 
 - **Welcome & Kickoff** (Monday, May 12, 10:00 – 11:00)
@@ -14,14 +14,14 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 
 ---
 
-## 📂 R Review  
+## 📂 [R Review](https://github.com/sicss-cmu/2025-materials/tree/main/R%20Review) 
 **Instructor**: Sarah Young
 
 - **R Fundamentals & Review** (Monday, May 12, 14:00 – 16:00)
 
 ---
 
-## 📂 Text Analysis  
+## 📂 [Text Analysis](https://github.com/sicss-cmu/2025-materials/tree/main/Text%20Analysis)  
 **Instructor**: Kristen Scotti
 
 - **Sentiment Analysis** (Tuesday, May 13, 10:00 – 12:00)  
@@ -29,7 +29,7 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 
 ---
 
-## 📂 Network Analysis  
+## 📂 [Network Analysis](https://github.com/sicss-cmu/2025-materials/tree/main/Network%20Analysis)  
 **Instructor**: Scott Renshaw
 
 - **Network Analysis Part 1** (Wednesday, May 14, 10:00 – 12:00)
@@ -37,7 +37,7 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 
 ---
 
-## 📂 Data Analysis  
+## 📂 [Data Analysis](https://github.com/sicss-cmu/2025-materials/tree/main/Data%20Analysis)  
 **Instructor**: Emma Slayton
 
 - **Data Visualization** (Thursday, May 15, 10:00 – 12:00)  
@@ -45,14 +45,14 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 
 ---
 
-## 📂 GenAI in Research  
+## 📂 [GenAI in Research](https://github.com/sicss-cmu/2025-materials/tree/main/GenAI%20in%20Research)  
 **Instructor**: Haoyong Lan
 
 - **Gen AI/LLM in Research/Data Science** (Thursday, May 15, 14:30 – 16:00)  
  
 ---
 
-## 📂 Working with Real-Life Data  
+## 📂 [Working with Real-Life Data](https://github.com/sicss-cmu/2025-materials/tree/main/Working%20with%20Real%20Life%20Data)  
 **Instructors**: Corina Paraschiv
 
 - **Planning with/for Errors Part 1** (Friday, May 16, 10:00 – 11:30) 
@@ -60,14 +60,14 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 
 ---
 
-## 📂 Data Collection 
+## 📂 [Data Collection](https://github.com/sicss-cmu/2025-materials/tree/main/Data%20Collection) 
 **Instructors**: Sarah Young & Di Yoong
 
 - **Data Collection: Surveys, Interviews** (Monday, May 19, 10:00 – 12:00) 
 
 ---
 
-## 📂 Speaker series
+## 📂 [Speaker series](https://github.com/sicss-cmu/2025-materials/tree/main/Speakers%20series)
 
 - **TBD** by Jennifer Koehrsen - Institutional Review Board at CMU  (Monday, May 12, 13:00 – 14:00) 
 - **TBD** by Nynke Niezink - Department of Statistics and Data Science at CMU (Tuesday, May 13, 12:30 – 13:30) 
