@@ -1,0 +1,59 @@
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
+# Read the film_genre.csv file
+film_data <- read_csv("film_genre.csv")
+
+head(film_data)
+```
+
+```{r}
+film_data_clean <- film_data %>%
+  filter(!is.na(age)) %>%
+  filter(gender != "?")
+```
+
+```{r}
+film_data_with_age_groups <- film_data_clean %>%
+  mutate(age_group = case_when(
+    age < 20 ~ "0-19",
+    age >= 20 & age < 30 ~ "20-29",
+    age >= 30 & age < 40 ~ "30-39",
+    age >= 40 & age < 50 ~ "40-49",
+    age >= 50 & age < 60 ~ "50-59",
+    age >= 60 ~ "60+"
+  ))
+```
+
+```{r}
+dialogue_by_gender_age_group <- film_data_with_age_groups %>%
+  group_by(gender, age_group) %>%
+  summarize(
+    avg_proportion = mean(proportion_of_dialogue),
+    count = n()
+  ) %>%
+  ungroup()
+```
+
+
+```{r}
+ggplot(dialogue_by_gender_age_group, aes(x = gender, y = avg_proportion, fill = age_group)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Average Proportion of Dialogue by Gender and Age Group",
+    x = "Gender",
+    y = "Average Proportion of Dialogue",
+    fill = "Age Group"
+  ) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set2") +
+  geom_text(
+    aes(label = paste0("n=", count)),
+    position = position_dodge(width = 0.9),
+    vjust = -0.5,
+    size = 3
+  )
+```
