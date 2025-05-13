@@ -5,11 +5,6 @@ The dataset we're going to use is **Corona_NLP_train.csv**
 For this project, make sure you have the following R packages installed:
 
 
-
-packages <- c("dplyr", "tidytext", "SnowballC", "tidyr", "ggplot2", "stringr")
-
-
-
 ### 📦 **Required Libraries**
 
 library(topicmodels)
