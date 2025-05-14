@@ -71,7 +71,7 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 
 - **Data, Research, and IRB Review** by Jennifer Koehrsen - Institutional Review Board at CMU  (Monday, May 12, 13:00 – 14:00) 
 - **Network Analysis** by Nynke Niezink - Department of Statistics and Data Science at CMU (Tuesday, May 13, 12:30 – 13:30) 
-- **TBD** by Lynnette Ng - School of Computer Science at CMU (Wednesday, May 14, 12:30 – 13:30) 
+- **Information Manipulation** by Lynnette Ng - School of Computer Science at CMU (Wednesday, May 14, 12:30 – 13:30) 
 - **TBD** by M Williams - Heinz College at CMU (Thursday, May 15, 12:30 – 13:30) 
 - **TBD** by Hirokazu Shirado - School of Computer Science at CMU (Friday, May 15, 14:00 – 16:00) 
 - **TBD** by Olivia Wells - Center for Shared Prosperity & Harry Hawkins - CREATE Lab (Monday, May 19, 13:00 – 14:00)
