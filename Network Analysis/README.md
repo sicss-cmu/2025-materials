@@ -6,8 +6,11 @@ For this project, make sure you have the following R packages installed:
 ### 📦 **Required Libraries**
 
 library(statnet) 
+
 library(relevent)   
+
 library(sna)  
+
 library(network)  
 
 And you can learn more about these packages here
