@@ -19,3 +19,5 @@ And you can learn more about these packages here
 - [relevent](https://cran.r-project.org/web/packages/relevent/relevent.pdf)  
 - [sna](https://cran.r-project.org/web/packages/sna/sna.pdf)  
 - [network](https://cran.r-project.org/web/packages/network/vignettes/networkVignette.pdf)  
+
+Please download the files for the workshops on [Scott's website](https://srenshaw.github.io/networkshop/)
