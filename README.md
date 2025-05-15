@@ -76,7 +76,7 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 - **TBD** by Hirokazu Shirado - School of Computer Science at CMU (Friday, May 15, 14:00 – 16:00) 
 - **TBD** by Olivia Wells - Center for Shared Prosperity & Harry Hawkins - CREATE Lab (Monday, May 19, 13:00 – 14:00)
 - **TBD** by Vernelle Noel - Department of Architecture at CMU (Tuesday, May 20, 10:00 – 11:00) 
-- **TBD** by Eleanor Mattern - University of Pittsburgh (Wednesday, May 21, 10:00 – 11:00) 
+- **TBD** by Eleanor Mattern - School of Computing and Information at the University of Pittsburgh (Wednesday, May 21, 10:00 – 11:00) 
 - **TBD** by Patrick Park - Software and Societal Systems Department (S3D) at CMU (Thursday, May 22, 10:00 – 11:00) 
 
 ---
