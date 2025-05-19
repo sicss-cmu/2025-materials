@@ -3,7 +3,7 @@
 - **Information Manipulation by Social Media Bots through a Network Analysis View** by Lynnette Ng - School of Computer Science at CMU (Wednesday, May 14, 12:30 – 13:30) [Slides](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/Information_Manipulation.pdf)
 - **TBD** by M Williams Sermons - Heinz College at CMU (Thursday, May 15, 12:30 – 13:30) 
 - **Computational Social Science and Experiments** by Hirokazu Shirado - School of Computer Science at CMU (Friday, May 15, 14:00 – 16:00) [Slides](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/SICSS_CMU_HirokazuShirado_20250516.pdf)
-- **TBD** by Olivia Wells - Center for Shared Prosperity & Harry Hawkins - CREATE Lab (Monday, May 19, 13:00 – 14:00)
+- Talks by Olivia Wells - Center for Shared Prosperity & Harry Hawkins - CREATE Lab at CMU (Monday, May 19, 13:00 – 14:00)
 - **Librarian Panel on Data and Databases** by Ryan Splenda, Jennifer Mckee, Alfredo González-Espinoza, Jessica Benner - CMU Libraries (Monday, May 19, 14:00 – 16:00) [Slides 1](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/Biz%26Econ%20Data%20Sources.pdf), [Slides 2](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/SICSS%20Panel_%20GIS%20data.pdf)
 - **TBD** by Vernelle Noel - Department of Architecture at CMU (Tuesday, May 20, 10:00 – 11:00) 
 - **TBD** by Eleanor Mattern - School of Computing and Information at the University of Pittsburgh (Wednesday, May 21, 10:00 – 11:00) 
