@@ -1,0 +1,279 @@
+---
+title: "Rail Trail Real Estate: Is There a Relationship Between Home Value and Rail Trail Proximity?"
+author: Elizabeth Cucuzzella
+format: 
+  pdf:
+    keep-tex: true
+editor: visual
+---
+
+## To Get Satisfactory/Excellent Comments:
+
+To get Satisfactory:
+
+-   Reconsider your model given comments on DAG and interaction – I realized that since bikescore/walkscore were mediators, and because of their strong non-linear relationship with distance, I could just consider the total effect of distance on adjusted 2007 value instead of breaking it into the effect through those mediators.
+
+-   Fix interpretation in results, particularly of interaction – I removed the interaction term, so that interpretation no longer was necessary, and I justified the decision to not include bikescore/walkscore carefully.
+
+-   Tidy up plots in data and fix blank spaces – I removed the pairs plot and just replaced it with the plots of greatest interest, neatly arranged. I also removed plot titles where I had captions. I also no longer try to adjust the height and width of figures manually, and I make sure to set fig-figurename to reference the figures throughout and let Quarto know that the R code is making a figure.
+
+-   Give results in APA format everywhere and include uncertainty – Included the confidence interval wherever I included the coefficient, and changed all interpretations in the results to APA format.
+
+To get Excellent:
+
+-   Clean up model formulas and present a cleaner table of results – I removed the row names from my table so that the variables were only listed once, and I reported my model only in the table instead of as an equation.
+
+-   Use readable variable names everywhere – I changed the columns to only readable variable names, and this is present in all figures and all tables throughout.
+
+-   Whatever your updated model is, justify it well – Clearly justified not including the bikescore/walkscore since it was a mediator in the DAG, and maintained the justifications that were already present in my initial submission that the grader approved of. I also included studentized residuals as justification for my model.
+
+## Executive Summary
+
+In the 1980s, communities across America started to transform their abandoned railways into recreational rail trails. In 2014, data was collected by Ella Hartenian and Nicholas Horton to answer the question of if there was an association between rail trails and property values. Their work focused on a subset of houses in Northampton, MA. In this analysis, we use the Northampton, MA data on property values, community attributes, and housing features to determine the effect of rail trails on home values by fitting a linear regression model to the data.
+
+We achieved statistically significant results for a negative relationship between distance and the log value of a home in 2007 (adjusted to thousands of 2014 dollars.) This suggests that in Northampton, MA, there is a negative effect of distance from the rail trail on average house value, with homes decreasing in value by approximately 15.9% (95% CI \[11.5%, 20.0%\]) with each mile increase in distance from a rail trail.
+
+Although the data is non-exhaustive and the households in Northampton, MA are not a representative sample of the American public, our analysis suggests a relationship between distance to rail trails and home values that further sampling over a variety of different communities could confirm.
+
+## Introduction
+
+When the Interstate Highway System rendered many commuter railways obsolete, railway spaces went unused for decades. In the 1980s, communities near these abandoned railways began converting the areas into recreational trails, as railroads were generally built on gentle slopes which are perfect for running, biking, and walking; thus, rail trails might serve as an attractive feature for home buyers. The question we aim to answer in this study is if people are willing to pay more to be closer to rail trail entrances.
+
+The data used in this analysis is from 2014, collected by Ella Hartenian and Nicholas Horton for "Rail Trails and Property Values: Is There an Association?" Their data collection focused on the value of homes sold in 2007 in Northampton, MA, where a rail trail was established in 1984. The data is comprised of 104 houses in the community with a variety of variables related to house attributes, pricing, and community standards collected via various websites. We use distance from the nearest rail trail entrance – along with other confounding house and community attributes – to predict the average value of a house over time. The goal is to determine if there is a relationship between distance and value, and we hypothesize that as distance decreases, the value of houses will – on average – increase.
+
+The results of this analysis provide evidence in support of our hypothesis: houses located closer to rail trail entrances are valued higher than those located further away. Our linear regression model suggests an average decrease in home value of approximately 15.9% (95% CI \[11.5%, 20.0%\]) with an increase of one mile in distance from a rail trail entrance.
+
+## Data
+
+#### Introduction to the Data
+
+The data is a collection of 104 homes sold in 2007 in Northampton, Massachusetts. Home values were acquired from Zillow's value estimator, distances were obtained from Google Maps, bike and walking scores came from the website Walkscore.com, and housing attributes were from the Multiple Listing Service. A summary of variables can be seen in Table 1. Variables such as zip code and ID were excluded, as well as the unadjusted price values for the houses since adjusted price is included.
+
+| Variable                | Description                                                                                                                    |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| Adjusted 1998           | An adjustment of Zillow's value for the home in 1998, adjusted to thousands of 2014 dollars.                                   |
+| Adjusted 2007           | An adjustment of Zillow's value for the home in 2007, adjusted to thousands of 2014 dollars.                                   |
+| Adjusted 2011           | An adjustment of Zillow's value for the home in 2011, adjusted to thousands of 2014 dollars.                                   |
+| Distance                | The distance from the house to the nearest rail trail entry in miles.                                                          |
+| Acres                   | The number of acres of property.                                                                                               |
+| Number of Bedrooms      | The number of bedrooms in the house.                                                                                           |
+| Bikescore               | The bike friendliness of the area as estimated by Walkscore on a scale from 0-100, where 100 indicates high bike-friendliness. |
+| Walkscore               | The walk friendliness of the area as estimated by Walkscore on a scale from 0-100, where 100 indicates high walk-friendliness. |
+| Number of Garage Spaces | The number of garage parking spots.                                                                                            |
+| Number of Full Baths    | The number of full bathrooms (bathrooms where there is a shower or a tub.)                                                     |
+| Number of Half Baths    | The number of half bathrooms (bathrooms where there are no showers or tubs.)                                                   |
+| Number of Rooms         | The number of rooms in the house.                                                                                              |
+| Squarefeet              | The square footage of the home's interior in thousands of square feet.                                                         |
+
+: Table of important variables within the rail trails data set and their descriptions, including units. {#tbl-something}
+
+#### Variable Selection
+
+The number of bedrooms, full baths, and half baths is captured by the overall number of rooms; therefore, in our exploratory data analysis, we focus solely on the distribution of the number of rooms.
+
+Additionally, because the rail trail was established in the 1980s in Northampton, the adjusted Zillow values from 1998, 2007, and 2011 are equally impacted by proximity to a rail trail entrance for each individual house. However, the houses in the data are those that were sold in 2007, and since we only have one value for features that might have changed with time, such as number of rooms and square-footage, we use solely the 2007 adjusted price as our response variable.
+
+#### Exploratory Data Analysis
+
+```{r, fig-pricedistancescatter, fig.cap="Scatter plot of distance from a rail trail vs. the adjusted 2007 price of the home fit with a smoothing line. The plot shows a negative relationship between distance and price, suggesting that as distance from the rail trail increases, the price of the house -- on average -- decreases. The rug plot on the y-axis shows the distribution of house prices.", fig.height = 2.5}
+#| echo: false 
+#| warning: false
+#| message: false
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+df <- read_csv("/Users/elizabethcucuzzella/Desktop/Regression Analysis/Project 1/rail-trails.csv")
+mydf <- df %>% select(acre, adj2007, distance, bikescore, squarefeet, walkscore, no_rooms, garage_spaces)
+ggplot(data = mydf, aes(x = distance, y = adj2007)) +
+  geom_point() +
+  geom_smooth(se = FALSE) + 
+  geom_rug(sides = "l") +
+  labs(x = "Distance from Rail Trail (miles)", y = "2007 Adjusted Price") +
+  theme_bw()
+```
+
+From the scatter plot provided in @fig-pricedistancescatter, we see that there exists a negative relationship between distance from the rail trail and the adjusted price of homes sold in 2007. This relationship does not appear necessarily linear. Additionally, the rug plot shows that there is a high concentration of 2007 home prices on the lower end of the price spectrum, with a few high outliers which are potentially influencing the appearance of the smoothing line.
+
+```{r, fig-boxandwhiskers, fig.cap="A boxplot showing the distributions of each of the variables in the rail trails data set. It is apparent that four variables have multiple outliers, including our response variable adjusted 2007 home prices."}
+#| echo: false 
+#| warning: false
+#| message: false
+library(readr)
+library(dplyr)
+library(GGally)
+library(ggplot2)
+library(tidyr)
+df <- read_csv("/Users/elizabethcucuzzella/Desktop/Regression Analysis/Project 1/rail-trails.csv")
+mydf <- df %>% select(acre, adj2007, distance, bikescore, squarefeet, walkscore, no_rooms, garage_spaces)
+names(mydf) <- c("Acres", "Adjusted 2007", "Distance", "Bikescore", "Squarefeet", "Walkscore", "Number of Rooms", "Number of Garage Spaces")
+normalized_mydf <- mydf %>% mutate(across(everything(), ~ (.-min(.))/(max(.)-min(.))))
+mydf_long <- normalized_mydf %>% pivot_longer(cols = everything(), names_to = "Variable", values_to = "Value")
+ggplot(data = mydf_long, aes(x = Variable, y = Value)) +
+  geom_boxplot(outlier.color = "blue") +
+  labs(x = "Variables") +
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+The long distributional tail for 2007 adjusted home prices in @fig-pricedistancescatter suggests outliers exist in the data. @fig-boxandwhiskers plots the box-and-whiskers plots for each variable after normalizing using min-max scaling, highlighting the outliers within individual variables. We can see from @fig-boxandwhiskers that there are outliers present in the number of garage spaces, the square-footage, the number of rooms, and the adjusted 2007 home prices.
+
+In @fig-bikeandwalk, we see that both bikescore and walkscore appear to have a strong, non-linear relationship with the distance value. Additionally, the linear correlation between walkscore and bikescore is 0.93, which suggests strong collinearity between these variables. In order to avoid enhancing prediction errors if we were to include bikescore or walkscore in modeling, this collinearity suggests using only one would be sufficient.
+
+```{r, fig-bikeandwalk, fig.cap="Scatter plot of distance to the rail trail vs. walkability (left) and bikeability (right) that shows a clear, non-linear relationship between the variables walkscore and bikescore and the variable distance. The relationship appears to be polynomial or logarithmic.", fig.height = 2.5}
+#| echo: false 
+#| warning: false
+#| message: false
+library(readr)
+library(dplyr)
+library(GGally)
+library(ggplot2)
+library(tidyr)
+library(gridExtra)
+df <- read_csv("/Users/elizabethcucuzzella/Desktop/Regression Analysis/Project 1/rail-trails.csv")
+mydf <- df %>% select(acre, adj2007, distance, bikescore, squarefeet, walkscore, no_rooms, garage_spaces)
+walkplot <- ggplot(data = mydf, aes(x = walkscore, y = distance)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  labs(x = "Walkscore", y = "Distance to Rail Trail (miles)") +
+  theme_bw()
+bikeplot <- ggplot(data = mydf, aes(x = bikescore, y = distance)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  labs(x = "Bikescore", y = "Distance to Rail Trail (miles)") +
+  theme_bw()
+grid.arrange(walkplot, bikeplot, ncol = 2)
+```
+
+## Methods
+
+#### Hypothesis Test
+
+The goal of this project is to understand the impact distance to rail trails has on the value of a house. Therefore, we use a linear regression model to predict the adjusted value of a house in 2007 from a variety of regressors, including distance to the nearest rail trail entrance. Ideally, we would want to see that $\beta_{\text{distance}} < 0$ in our linear model since we want to test if being closer in distance to a rail trail means a higher house value.
+
+#### Regressor Selection and Transformations
+
+There are multiple variables within the data set that represent the size of the property. We were easily able to detect collinearity between walkscore and bikescore because of their high correlation of 0.93. However, multi-collinearity is hard to detect from correlation alone; instead, we computed the condition number $k = \lambda_{\text{max}}/\lambda_{\text{min}}$ where the eigenvalues $\lambda$ are from the variable covariance matrix. An ill-conditioned covariance matrix implies high collinearity within the data. For the covariance matrix between number of rooms, squarefeet, acre, and number of garage spaces, the condition number $k = 221.83$ is quite high. Removing the acre variable alone brings the condition number down to $k = 45.84$. Therefore, we can assume that acre is collinear with the number of rooms, squarefeet, and the number of garage spaces. In @fig-boxandwhiskers, we saw that the number of rooms, squarefeet, and the number of garage spaces all have outliers, so we choose to use only the variable acre in the modeling process in order to avoid potentially enhancing errors.
+
+The @fig-dag causal diagram shows that walkscore and bikescore are mediators between distance and the 2007 adjusted home value. If we were to include walkscore or bikescore in our model, we would be modeling the impact of distance on price partially through those variables, instead of the direct impact of distance on price. By not including the bikescore and walkscore directly in modeling, the distance variable will indirectly incorporate them through their average relationship. Therefore, in selecting the variables for modeling, we choose not to use either walkscore or bikescore in order to get the total effect of distance on 2007 adjusted home value.
+
+Finally, as can be seen in @fig-pricedistancescatter and @fig-boxandwhiskers, adjusted 2007 price has a long tail and a variety of outliers. Removing outliers might mean we lose vital information; we are only working with a small set of houses (104.) Therefore, we choose to log transform adjusted 2007 price. Log transformations are useful for normalizing skewed data; although it is not always advisable to use log transformations because they impact interpretability, we tested both log transformed and non-logged transformed values in our regression and determined the log transformed version yielded results less susceptible to outliers.
+
+```{r, fig-dag, fig.cap = "DAG for the variables present in this data set. Although there most likely is some relationship between bikescore and walkscore, it is unclear what direction that causal arrow goes. Additionally, although there might be some relationship between acre, squarefeet, number of rooms, and number of garage parking spaces, it is not necessarily the case that more space means more rooms or parking spots since it could mean larger rooms or larger backyard spaces.", fig.height = 2.5}
+#| echo: false 
+#| warning: false
+#| message: false 
+library(png)
+library(grid)
+library(magick)
+img <- readPNG("/Users/elizabethcucuzzella/Desktop/Regression Analysis/Project 1/DAG.png") 
+grid.raster(img)
+```
+
+#### Appropriateness of the Model
+
+In order to test the appropriateness of our model, we observe the partial residuals for each of our regressors in @fig-partialr. The smoothing line falls along the model prediction line for each of the regressors with only slight deviations. This implies that the relationships between our predictor and our regressors are indeed close to linear which serves as justification for our model. In @fig-student, we test the assumptions that the residuals have constant variance by plotting the studentized residuals and check that the results are approximately normal using a QQ plot. Although there are a few outliers which cause deviations from the flat line it appears that the studentized residuals have high and low residuals scattered throughout, and since the scatter above and below the line $y=0$ is similar, it appears that there is constant variance. Apart from a few outliers at the extremes, the observed and theoretical quantiles fall approximately along the line $y=x$ in the QQ plot, suggesting approximate normality. Together, @fig-partialr and @fig-student provide strong justification for our model choice.
+
+```{r, fig-partialr, fig.cap="The partial residuals for each of the predictors in the fitted linear model. The smoothing lines fall closely to the model predictions, implying that the relationships are approximately linear.", fig.height = 2.5}
+#| echo: false 
+#| warning: false
+#| message: false 
+library(readr)
+library(dplyr)
+library(regressinator)
+library(ggplot2)
+library(knitr)
+library(broom)
+df <- read_csv("/Users/elizabethcucuzzella/Desktop/Regression Analysis/Project 1/rail-trails.csv")
+
+mydf <- df %>% select(adj2007, distance, acre)
+mydf <- mydf %>% mutate(log_adj2007 = log(adj2007))
+
+fit <- lm(log_adj2007 ~ distance + acre, data = mydf)
+
+partial_residuals(fit) |>
+  ggplot(aes(x = .predictor_value, y = .partial_resid)) +
+  geom_point() +
+  geom_line(aes(y = .predictor_effect)) +
+  geom_smooth(se = FALSE) +
+  facet_wrap(vars(.predictor_name), scales = "free") +
+  labs(x = "Predictor Value", y = "Partial Residual") + 
+  theme_bw()
+```
+
+```{r, fig-student, fig.cap="The studentized residual plot for the fitted model can be seen in the left pannel, showing that the key model assumptions constant variability in the residuals holds despite a few outliers which distort the graph. The QQ plot for the model is in the right pannel, showing that the results are approximately normal.", fig.height = 2.5}
+#| echo: false 
+#| warning: false
+#| message: false 
+library(readr)
+library(dplyr)
+library(regressinator)
+library(ggplot2)
+library(knitr)
+library(broom)
+library(gridExtra)
+df <- read_csv("/Users/elizabethcucuzzella/Desktop/Regression Analysis/Project 1/rail-trails.csv")
+
+mydf <- df %>% select(adj2007, distance, acre)
+mydf <- mydf %>% mutate(log_adj2007 = log(adj2007))
+
+fit <- lm(log_adj2007 ~ distance + acre, data = mydf)
+
+studentized <- augment(fit) |>
+  ggplot(aes(x = .fitted, y = .std.resid)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  labs(x = "Fitted value", y = "Studentized Residual") +
+  theme_bw()
+
+qq <- augment(fit) |>
+  ggplot(aes(sample = .std.resid)) +
+  geom_qq() +
+  geom_qq_line(color = "blue") +
+  labs(x = "Theoretical quantiles",
+       y = "Observed quantiles") 
+
+grid.arrange(studentized, qq, ncol = 2)
+```
+
+## Discussion and Results
+
+```{r, fig.cap="Table 2: Summary of the fitted model -- including p-value and 95% confidence interval -- as described in the Methods section."}
+#| echo: false 
+#| warning: false
+#| message: false 
+library(readr)
+library(dplyr)
+library(knitr)
+library(broom)
+df <- read_csv("/Users/elizabethcucuzzella/Desktop/Regression Analysis/Project 1/rail-trails.csv")
+
+mydf <- df %>% select(adj2007, distance, acre)
+mydf <- mydf %>% mutate(log_adj2007 = log(adj2007))
+
+fit <- lm(log_adj2007 ~ distance + acre, data = mydf)
+init_results <- tidy(fit)
+confidence <- confint(fit, level = 0.95)
+full <- cbind(init_results, confidence)
+full |> knitr::kable(digits = 3, row.names = FALSE)
+```
+
+As can be seen in Table 2's summary of the fitted model, for homes in Northampton, MA, there is a statistically significant association between distance to a rail trail and the log of the adjusted price of a home in 2007, $\hat{\beta}_{\text{distance}}=-0.173, t(104)=-6.834, p<0.0001$. Thus, for Northampton, MA homes, each additional mile of distance from a rail trail is associated with a 0.173 decrease in the log of the adjusted price of a home in 2007, on average (95% CI \[-0.2230, -0.1227\].)
+
+Since we log transformed 2007 adjusted home value, we are really finding the coefficients that determine the relationships between our regressors and the log of 2007 adjusted value, which is hard to interpret. However, we can transform our linear regression model's equation to determine the impact on the 2007 adjusted value, rewriting the model as $y = e^{\hat{\beta_{0}}}\times e^{\hat{\beta_{1}}\times(\text{distance})} \times e^{\hat{\beta_{2}}\times (\text{acre})}$.
+
+As distance increases by 1, $y$ – in our case, 2007 adjusted home value – will change by a factor of $e^{\hat{\beta_{1}}}$. Since $\hat{\beta_{1}}=-0.173$ , $e^{\hat{\beta_{1}}}=0.841$ meaning in Northampton, MA, as distance from the rail trail increases by 1 mile, 2007 adjusted value decreases by 15.9%, on average (95% CI \[11.5%, 20.0%\].)
+
+## Conclusions
+
+Our analysis finds that the 2007 adjusted value of a house decreases by approximately 15.9% (95% CI \[11.5%, 20.0%\]) for every increase in mile of distance between a house and a rail trail. This means that houses located closer to rail trails in Northampton, MA are – on average – valued higher than those that are located further away. These results are statistically significant at the 0.05 level, with a p-value of less than 0.0001.
+
+These results are subject to limitations, however. For starters, our model was only built using data from Northampton, MA. The population of Northampton, MA is not necessarily representative of the general American public; for example, Northampton is 85.4% white with a median household income of \$80,981, according to the most recent census data. The average American household income is \$74,755 as of 2022, and 61.6% of Americans are white; Northampton is clearly not a representative sample of the American public, and, therefore, the results from Northampton cannot be generalized to broader American communities. While they might indicate a trend, further data collection and analysis from a wider variety of cities with rail trails would allow for more universally applicable results.
+
+Furthermore, the data is not exhaustive; there are a variety of other factors that impact the value of a house, or the desire of home buyers to be close to a rail trail. For example, the data provides no information on if the home buyers were single, married, or had families, which might impact how much they were able to spend on a house. We also are unaware if the people in the houses sampled were aware of the proximity to rail trails; if people were generally unaware of the trail, then their spending habits are completely unrelated to its proximity.
+
+Despite these limitations, our analysis does suggests the existence of a negative relationship between house value and distance from rail trails. This analysis provides ample support for further investigation into the relationship between rail trails and house value across a broader spectrum of communities. Not only might this relationship impact real estate pricing practices, but it also could serve as an incentive for communities to transform their abandoned railways into recreational attractions.
+
+## References
+
+Ella Hartenian and Nicholas J. Horton (2015). Rail Trails and Property Values: Is There an Association? *Journal of Statistics Education* 23:2, <https://doi.org/10.1080/10691898.2015.11889735>
