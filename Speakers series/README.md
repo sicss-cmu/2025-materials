@@ -1,11 +1,11 @@
 - **Data, Research, and IRB Review** by Jennifer Koehrsen - Institutional Review Board at CMU  (Monday, May 12, 13:00 – 14:00) [Slides](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/Data%2C%20Research%2C%20and%20IRB%20Review.pdf)
 - **Dynamics on Network and Network Dynamics** by Nynke Niezink - Department of Statistics and Data Science at CMU (Tuesday, May 13, 12:30 – 13:30) [Slides](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/NetworkAnalysis.pdf) 
 - **Information Manipulation by Social Media Bots through a Network Analysis View** by Lynnette Ng - School of Computer Science at CMU (Wednesday, May 14, 12:30 – 13:30) [Slides](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/Information_Manipulation.pdf)
-- **Research with administrative data sources** by M Williams Sermons - Heinz College at CMU (Thursday, May 15, 12:30 – 13:30) [Slides](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/M%20W%20Sermons%20Summer%20Institute%20Presentation.pdf)
+- **Research With Administrative Data Sources** by M Williams Sermons - Heinz College at CMU (Thursday, May 15, 12:30 – 13:30) [Slides](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/M%20W%20Sermons%20Summer%20Institute%20Presentation.pdf)
 - **Computational Social Science and Experiments** by Hirokazu Shirado - School of Computer Science at CMU (Friday, May 15, 14:00 – 16:00) [Slides](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/SICSS_CMU_HirokazuShirado_20250516.pdf)
 - Talks by Olivia Wells - Center for Shared Prosperity & Harry Hawkins - CREATE Lab at CMU (Monday, May 19, 13:00 – 14:00)
 - **Librarian Panel on Data and Databases** by Ryan Splenda, Jennifer Mckee, Alfredo González-Espinoza, Jessica Benner - CMU Libraries (Monday, May 19, 14:00 – 16:00) [Slides 1](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/Biz%26Econ%20Data%20Sources.pdf), [Slides 2](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/SICSS%20Panel_%20GIS%20data.pdf)
 - **TBD** by Vernelle Noel - Department of Architecture at CMU (Tuesday, May 20, 10:00 – 11:00) 
-- **TBD** by Eleanor Mattern - School of Computing and Information at the University of Pittsburgh (Wednesday, May 21, 10:00 – 11:00) 
+- **Connecting Communities with Open Civic Data** by Eleanor Mattern - School of Computing and Information at the University of Pittsburgh (Wednesday, May 21, 10:00 – 11:00) 
 - **TBD** by Patrick Park - Software and Societal Systems Department (S3D) at CMU (Thursday, May 22, 10:00 – 11:00) 
 
