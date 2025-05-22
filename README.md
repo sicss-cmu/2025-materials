@@ -78,7 +78,7 @@ Below are the folders corresponding to core instructional sessions. Each folder 
 - **Librarian Panel on Data and Databases** by Ryan Splenda, Jennifer Mckee, Alfredo González-Espinoza, Jessica Benner - CMU Libraries (Monday, May 19, 14:00 – 16:00)
 - **TBD** by Vernelle Noel - Department of Architecture at CMU (Tuesday, May 20, 10:00 – 11:00) 
 - **Connecting Communities with Open Civic Data** by Eleanor Mattern - School of Computing and Information at the University of Pittsburgh (Wednesday, May 21, 10:00 – 11:00) 
-- **TBD** by Patrick Park - Software and Societal Systems Department (S3D) at CMU (Thursday, May 22, 10:00 – 11:00) 
+- **The Long Game: Preserving Human Digital Trace Data for Future Generations** by Patrick Park - Software and Societal Systems Department (S3D) at CMU (Thursday, May 22, 10:00 – 11:00) 
 
 ---
 
