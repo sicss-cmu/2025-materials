@@ -7,5 +7,5 @@
 - **Librarian Panel on Data and Databases** by Ryan Splenda, Jennifer Mckee, Alfredo González-Espinoza, Jessica Benner - CMU Libraries (Monday, May 19, 14:00 – 16:00) [Slides 1](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/Biz%26Econ%20Data%20Sources.pdf), [Slides 2](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/SICSS%20Panel_%20GIS%20data.pdf)
 - **TBD** by Vernelle Noel - Department of Architecture at CMU (Tuesday, May 20, 10:00 – 11:00) 
 - **Connecting Communities with Open Civic Data** by Eleanor Mattern - School of Computing and Information at the University of Pittsburgh (Wednesday, May 21, 10:00 – 11:00) [Slides](https://github.com/sicss-cmu/2025-materials/blob/main/Speakers%20series/Connecting%20Communities%20with%20Open%20Civic%20Data.pdf)
-- **TBD** by Patrick Park - Software and Societal Systems Department (S3D) at CMU (Thursday, May 22, 10:00 – 11:00) 
+- **The Long Game: Preserving Human Digital Trace Data for Future Generations** by Patrick Park - Software and Societal Systems Department (S3D) at CMU (Thursday, May 22, 10:00 – 11:00) 
 
